@@ -16,6 +16,7 @@ Nace de la salida de campo del 20 de octubre de 2026 de la asignatura Hongos y O
 | `img/` | Fotos de campo y recortes |
 | `pipeline/hongo3d.py` | Programa que convierte un recorte en modelo 3D |
 | `vendor/` | Visor 3D *model-viewer* (Google, Apache 2.0) |
+| `informes/` | Informe de la salida a Yotoco y propuesta del catálogo 3D (PDF) |
 
 ## Cómo se hace un modelo
 
