@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catálogo Fúngico de Yotoco</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Catálogo digital y libre de los hongos de la Reserva Forestal Bosque de Yotoco, con modelos 3D. Universidad Nacional de Colombia, Sede Palmira.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="vendor/model-viewer-umd.min.js"></script>
+<style>
+/* Layout: cabecera con el propósito, ficha con visor 3D a la izquierda y etiqueta de colección a la derecha, flujo de trabajo y método abajo */
+:root{
+  --bg:#EEF0EA; --paper:#F9FAF6; --ink:#1E241F; --muted:#5C675D; --line:#CDD4CA;
+  --accent:#9B3B4E; --accent2:#C48A3A; --onaccent:#FFFFFF;
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131714; --paper:#1B211C; --ink:#E5EAE3; --muted:#9CA89D; --line:#2F3A31;
+  --accent:#E08A9C; --accent2:#E3B062; --onaccent:#1B211C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131714; --paper:#1B211C; --ink:#E5EAE3; --muted:#9CA89D; --line:#2F3A31;
+  --accent:#E08A9C; --accent2:#E3B062; --onaccent:#1B211C; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.15;text-wrap:balance}
+p{margin:0}
+em{font-style:italic}
+a{color:var(--accent)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;flex-direction:column;gap:14px;max-width:760px}
+header h1{font-size:clamp(2.2rem,5.5vw,3.6rem)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+.stats b{color:var(--ink);font-weight:500}
+/* ficha */
+.ficha{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0;background:var(--paper);border:1px solid var(--line)}
+.stage{position:relative;min-height:440px;max-width:100%;background:radial-gradient(circle at 50% 42%,var(--paper),var(--bg))}
+.stage model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent}
+.hint{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.etiqueta{border-left:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.etiqueta .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.code{font-family:var(--f-mono);font-weight:500;color:var(--accent)}
+.etiqueta h2{font-size:1.7rem}
+dl{margin:0;display:grid;grid-template-columns:1fr;gap:10px}
+dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+dd{margin:0;font-size:.95rem;line-height:1.45}
+.pend{color:var(--muted);font-style:italic}
+.badge{align-self:flex-start;font-family:var(--f-mono);font-size:.72rem;padding:3px 10px;border:1px solid var(--accent2);color:var(--accent2);border-radius:999px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:500 .85rem var(--f-body);background:transparent;color:var(--ink);border:1px solid var(--line);padding:6px 12px;border-radius:3px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--onaccent)}
+.tabs button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.fotos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fotos figure{margin:0;display:flex;flex-direction:column;gap:4px}
+.fotos img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--bg)}
+.fotos img.contain{object-fit:contain}
+figcaption{font-size:.82rem;color:var(--muted)}
+/* método */
+section{display:flex;flex-direction:column;gap:16px}
+section > p{max-width:68ch}
+.flujo{overflow-x:auto}
+.flujo img{display:block;width:100%;min-width:640px;max-width:100%;background:#fff}
+ol.pasos{margin:0;padding:0;list-style:none;counter-reset:p;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+ol.pasos li{counter-increment:p;display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--accent);padding-top:12px}
+ol.pasos li::before{content:"Paso " counter(p);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+ol.pasos b{font-weight:600}
+.nota{font-size:.92rem;color:var(--muted);max-width:68ch}
+footer{border-top:1px solid var(--line);padding-top:18px;font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+@media (max-width:860px){
+  .ficha{grid-template-columns:1fr}
+  .stage{min-height:0;aspect-ratio:1/1}
+  .etiqueta{border-left:0;border-top:1px solid var(--line)}
+  ol.pasos{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Universidad Nacional de Colombia · Sede Palmira · Hongos y Oomicetos</span>
+    <h1>Catálogo fúngico de la Reserva Forestal Bosque de Yotoco</h1>
+    <p class="lede">Registro digital y libre de los hongos de la reserva. Cada hongo tiene su ficha, sus fotos de campo y un modelo 3D que se gira en el navegador.</p>
+    <div class="stats">
+      <span><b>1</b> ficha publicada</span>
+      <span><b>32</b> géneros registrados en la salida</span>
+      <span>Salida de campo: <b>20 oct 2026</b></span>
+    </div>
+  </header>
+
+  <article class="ficha" id="cf-001" aria-label="Ficha CF-001">
+    <div class="stage">
+      <model-viewer id="mv" src="modelos/CF-001_leucoagaricus.glb" camera-controls auto-rotate rotation-per-second="18deg"
+        camera-orbit="20deg 60deg 110%" shadow-intensity="0.7" exposure="1.05" touch-action="pan-y"
+        alt="Modelo 3D de Leucoagaricus, píleo rosado-vinoso con estípite y anillo"></model-viewer>
+      <span class="hint">Arrastra para girar · pellizca para acercar</span>
+    </div>
+    <div class="etiqueta">
+      <div class="head"><span class="eyebrow">Etiqueta</span><span class="code">CF-001</span></div>
+      <h2><em>Leucoagaricus</em> sp.</h2>
+      <span class="badge">Identificación tentativa · pendiente revisión docente</span>
+      <dl id="p-ficha">
+        <div><dt>Taxonomía</dt><dd>Fungi › Basidiomycota › Agaricomycetes › Agaricales › Agaricaceae</dd></div>
+        <div><dt>Píleo</dt><dd>Convexo a aplanado, centro algo deprimido; fibrillas o escamas radiales rosado-vinosas sobre fondo crema, centro violáceo; margen crema.</dd></div>
+        <div><dt>Estípite</dt><dd>Cilíndrico, central, anaranjado a café claro, con anillo membranoso blanco-crema.</dd></div>
+        <div><dt>Sustrato</dt><dd>Hojarasca</dd></div>
+        <div><dt>Localidad</dt><dd>Reserva Forestal Bosque de Yotoco, Yotoco, Valle del Cauca</dd></div>
+        <div><dt>Fecha · colector</dt><dd>20 oct 2026 · Juan David Rojas Villafañe</dd></div>
+        <div><dt>Pendiente</dt><dd class="pend">Escala, GPS, esporada, olor y confirmación de los docentes</dd></div>
+      </dl>
+      <div class="fotos" id="p-fotos">
+        <figure><img src="img/CF-001_campo.jpg" alt="Foto de campo del Leucoagaricus en la hojarasca"><figcaption>Foto de campo (A19)</figcaption></figure>
+        <figure><img class="contain" src="img/CF-001_recorte.webp" alt="Leucoagaricus recortado sin fondo"><figcaption>Recorte sin fondo</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <section>
+    <span class="eyebrow">Método</span>
+    <h2>De una foto de campo a un modelo 3D</h2>
+    <p>El modelo se obtiene de una sola fotografía con herramientas libres en Python. El programa está en la carpeta <code>pipeline/</code> del repositorio para repetir el proceso con cada hongo.</p>
+    <div class="flujo"><img src="img/flujo_foto_3d.jpg" alt="Foto de campo, recorte automático y dos vistas del modelo 3D"></div>
+    <ol class="pasos">
+      <li><b>Recorte</b><span>El hongo se separa del fondo con SAM (<em>Segment Anything</em>), marcando puntos sobre el píleo y el estípite.</span></li>
+      <li><b>Píleo</b><span>La cara superior, vista como elipse por la perspectiva, se endereza a un disco y se usa como textura.</span></li>
+      <li><b>Estípite y láminas</b><span>El ancho del pie se mide fila por fila y se gira sobre su eje; las láminas se modelan con el color de su borde visible.</span></li>
+    </ol>
+    <p class="nota">El modelo supone simetría radial y completa las partes que no se ven en la foto. Sirve para ver la forma y los caracteres, no para medir. Para modelos fieles se usará fotogrametría (40 a 80 fotos alrededor de cada hongo).</p>
+  </section>
+
+  <footer>
+    <span>Juan David Rojas Villafañe · Ingeniería Agronómica · Universidad Nacional de Colombia, Sede Palmira</span>
+    <span>Docentes de la asignatura: Carlos Alberto Huertas Davey y Eyder Daniel Gómez López</span>
+    <span>Fotos y modelos: CC BY 4.0 · Código: MIT · <a href="https://github.com/jrojasvi-oss/catalogo-fungico-yotoco">Repositorio en GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>

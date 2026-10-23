@@ -1,0 +1,19 @@
+[
+  {
+    "codigo": "CF-001",
+    "genero": "Leucoagaricus",
+    "determinacion": "Leucoagaricus sp. (probable), por fotografía",
+    "taxonomia": ["Fungi", "Basidiomycota", "Agaricomycetes", "Agaricales", "Agaricaceae", "Leucoagaricus"],
+    "pileo": "Convexo a aplanado, centro algo deprimido; fibrillas o escamas radiales rosado-vinosas sobre fondo crema, centro violáceo; margen crema",
+    "laminas": "Crema, vistas solo por el borde inferior del píleo",
+    "estipite": "Cilíndrico, central, anaranjado a café claro, con anillo membranoso blanco-crema",
+    "sustrato": "Hojarasca",
+    "localidad": "Reserva Forestal Bosque de Yotoco, Yotoco, Valle del Cauca, Colombia",
+    "fecha": "2026-10-20",
+    "colector": "Juan David Rojas Villafañe",
+    "foto_origen": "A19 (anexo A del informe de la salida)",
+    "modelo_3d": "modelos/CF-001_leucoagaricus.glb",
+    "estado": "Identificación tentativa, pendiente revisión docente",
+    "pendiente": ["escala", "coordenadas GPS", "esporada", "olor"]
+  }
+]
