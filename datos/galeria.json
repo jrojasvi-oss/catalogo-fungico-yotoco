@@ -1,0 +1,562 @@
+[
+ {
+  "foto": "A1",
+  "img": "img/galeria/A01.jpg",
+  "genero": "Pleurotus",
+  "familia": "Pleurotaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A2",
+  "img": "img/galeria/A02.jpg",
+  "genero": "Pleurotus",
+  "familia": "Pleurotaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A3",
+  "img": "img/galeria/A03.jpg",
+  "genero": "Polyporus s.l.",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A4",
+  "img": "img/galeria/A04.jpg",
+  "genero": "Polyporus s.l.",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A5",
+  "img": "img/galeria/A05.jpg",
+  "genero": "Macrolepiota",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A6",
+  "img": "img/galeria/A06.jpg",
+  "genero": "Macrolepiota",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A7",
+  "img": "img/galeria/A07.jpg",
+  "genero": "Macrolepiota",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A8",
+  "img": "img/galeria/A08.jpg",
+  "genero": "Apioperdon",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A9",
+  "img": "img/galeria/A09.jpg",
+  "genero": "Lycoperdon",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A10",
+  "img": "img/galeria/A10.jpg",
+  "genero": "Lycoperdon",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A11",
+  "img": "img/galeria/A11.jpg",
+  "genero": "Xylaria",
+  "familia": "Xylariaceae",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A12",
+  "img": "img/galeria/A12.jpg",
+  "genero": "Xylaria",
+  "familia": "Xylariaceae",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A13",
+  "img": "img/galeria/A13.jpg",
+  "genero": "Xylaria",
+  "familia": "Xylariaceae",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A14",
+  "img": "img/galeria/A14.jpg",
+  "genero": "Xylaria",
+  "familia": "Xylariaceae",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A15",
+  "img": "img/galeria/A15.jpg",
+  "genero": "Xylaria",
+  "familia": "Xylariaceae",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A16",
+  "img": "img/galeria/A16.jpg",
+  "genero": "Xylaria",
+  "familia": "Xylariaceae",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A17",
+  "img": "img/galeria/A17.jpg",
+  "genero": "Indeterminado",
+  "familia": "—",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A18",
+  "img": "img/galeria/A18.jpg",
+  "genero": "Indeterminado",
+  "familia": "—",
+  "orden": "Xylariales",
+  "grupo": "Ascomycota"
+ },
+ {
+  "foto": "A19",
+  "img": "img/galeria/A19.jpg",
+  "genero": "Leucoagaricus (prob.)",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A20",
+  "img": "img/galeria/A20.jpg",
+  "genero": "Leucoagaricus (prob.)",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A21",
+  "img": "img/galeria/A21.jpg",
+  "genero": "Indeterminado",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A22",
+  "img": "img/galeria/A22.jpg",
+  "genero": "Cystolepiota (prob.)",
+  "familia": "Agaricaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A23",
+  "img": "img/galeria/A23.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A24",
+  "img": "img/galeria/A24.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A25",
+  "img": "img/galeria/A25.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A26",
+  "img": "img/galeria/A26.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A27",
+  "img": "img/galeria/A27.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A28",
+  "img": "img/galeria/A28.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A29",
+  "img": "img/galeria/A29.jpg",
+  "genero": "Marasmius",
+  "familia": "Marasmiaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A30",
+  "img": "img/galeria/A30.jpg",
+  "genero": "Gymnopus (prob.)",
+  "familia": "Omphalotaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A31",
+  "img": "img/galeria/A31.jpg",
+  "genero": "Gymnopus (prob.)",
+  "familia": "Omphalotaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A32",
+  "img": "img/galeria/A32.jpg",
+  "genero": "Mycena",
+  "familia": "Mycenaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A33",
+  "img": "img/galeria/A33.jpg",
+  "genero": "Mycena",
+  "familia": "Mycenaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A34",
+  "img": "img/galeria/A34.jpg",
+  "genero": "Favolaschia",
+  "familia": "Mycenaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A35",
+  "img": "img/galeria/A35.jpg",
+  "genero": "Cyptotrama",
+  "familia": "Physalacriaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A36",
+  "img": "img/galeria/A36.jpg",
+  "genero": "Cyptotrama",
+  "familia": "Physalacriaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A37",
+  "img": "img/galeria/A37.jpg",
+  "genero": "Armillaria (prob.)",
+  "familia": "Physalacriaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A38",
+  "img": "img/galeria/A38.jpg",
+  "genero": "Armillaria (prob.)",
+  "familia": "Physalacriaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A39",
+  "img": "img/galeria/A39.jpg",
+  "genero": "Armillaria (prob.)",
+  "familia": "Physalacriaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A40",
+  "img": "img/galeria/A40.jpg",
+  "genero": "Gymnopilus (prob.)",
+  "familia": "Hymenogastraceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A41",
+  "img": "img/galeria/A41.jpg",
+  "genero": "Pluteus (prob.)",
+  "familia": "Pluteaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A42",
+  "img": "img/galeria/A42.jpg",
+  "genero": "Gerronema (prob.)",
+  "familia": "Porotheleaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A43",
+  "img": "img/galeria/A43.jpg",
+  "genero": "Schizophyllum (prob.)",
+  "familia": "Schizophyllaceae",
+  "orden": "Agaricales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A44",
+  "img": "img/galeria/A44.jpg",
+  "genero": "Lentinus (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A45",
+  "img": "img/galeria/A45.jpg",
+  "genero": "Lentinus (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A46",
+  "img": "img/galeria/A46.jpg",
+  "genero": "Lentinus (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A47",
+  "img": "img/galeria/A47.jpg",
+  "genero": "Panus (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A48",
+  "img": "img/galeria/A48.jpg",
+  "genero": "Panus (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A49",
+  "img": "img/galeria/A49.jpg",
+  "genero": "Trametes",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A50",
+  "img": "img/galeria/A50.jpg",
+  "genero": "Trametes",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A51",
+  "img": "img/galeria/A51.jpg",
+  "genero": "Trametes",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A52",
+  "img": "img/galeria/A52.jpg",
+  "genero": "Trametes",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A53",
+  "img": "img/galeria/A53.jpg",
+  "genero": "Indeterminado",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A54",
+  "img": "img/galeria/A54.jpg",
+  "genero": "Ganoderma (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A55",
+  "img": "img/galeria/A55.jpg",
+  "genero": "Ganoderma (prob.)",
+  "familia": "Polyporaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A56",
+  "img": "img/galeria/A56.jpg",
+  "genero": "Rigidoporus (prob.)",
+  "familia": "Meripilaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A57",
+  "img": "img/galeria/A57.jpg",
+  "genero": "Cymatoderma (prob.)",
+  "familia": "Meruliaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A58",
+  "img": "img/galeria/A58.jpg",
+  "genero": "Cymatoderma (prob.)",
+  "familia": "Meruliaceae",
+  "orden": "Polyporales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A59",
+  "img": "img/galeria/A59.jpg",
+  "genero": "Artomyces",
+  "familia": "Auriscalpiaceae",
+  "orden": "Russulales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A60",
+  "img": "img/galeria/A60.jpg",
+  "genero": "Auricularia",
+  "familia": "Auriculariaceae",
+  "orden": "Auriculariales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A61",
+  "img": "img/galeria/A61.jpg",
+  "genero": "Auricularia",
+  "familia": "Auriculariaceae",
+  "orden": "Auriculariales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A62",
+  "img": "img/galeria/A62.jpg",
+  "genero": "Exidia (prob.)",
+  "familia": "Auriculariaceae",
+  "orden": "Auriculariales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A63",
+  "img": "img/galeria/A63.jpg",
+  "genero": "Dacryopinax (prob.)",
+  "familia": "Dacrymycetaceae",
+  "orden": "Dacrymycetales",
+  "grupo": "Basidiomycota"
+ },
+ {
+  "foto": "A64",
+  "img": "img/galeria/A64.jpg",
+  "genero": "Indeterminado",
+  "familia": "—",
+  "orden": "—",
+  "grupo": "Otro"
+ },
+ {
+  "foto": "A65",
+  "img": "img/galeria/A65.jpg",
+  "genero": "Indeterminado",
+  "familia": "—",
+  "orden": "—",
+  "grupo": "Otro"
+ },
+ {
+  "foto": "A66",
+  "img": "img/galeria/A66.jpg",
+  "genero": "Indeterminado",
+  "familia": "—",
+  "orden": "—",
+  "grupo": "Mixomiceto"
+ },
+ {
+  "foto": "A67",
+  "img": "img/galeria/A67.jpg",
+  "genero": "Arcyria",
+  "familia": "Trichiaceae",
+  "orden": "Trichiales",
+  "grupo": "Mixomiceto"
+ },
+ {
+  "foto": "A68",
+  "img": "img/galeria/A68.jpg",
+  "genero": "Trichia",
+  "familia": "Trichiaceae",
+  "orden": "Trichiales",
+  "grupo": "Mixomiceto"
+ },
+ {
+  "foto": "A69",
+  "img": "img/galeria/A69.jpg",
+  "genero": "Indeterminado",
+  "familia": "—",
+  "orden": "—",
+  "grupo": "Mixomiceto"
+ },
+ {
+  "foto": "A70",
+  "img": "img/galeria/A70.jpg",
+  "genero": "Madera en descomposición",
+  "familia": "—",
+  "orden": "—",
+  "grupo": "Otro"
+ }
+]

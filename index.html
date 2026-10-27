@@ -4,143 +4,316 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Catálogo Fúngico de Yotoco</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Catálogo digital y libre de los hongos de la Reserva Forestal Bosque de Yotoco, con modelos 3D. Universidad Nacional de Colombia, Sede Palmira.">
+<meta name="description" content="Catálogo digital y libre de los hongos de la Reserva Forestal Bosque de Yotoco, con fotos de campo y modelos 3D. Universidad Nacional de Colombia, Sede Palmira.">
+<meta property="og:title" content="Catálogo fúngico de Yotoco">
+<meta property="og:description" content="70 fotos, 32 géneros y el primer hongo en 3D de la Reserva Forestal Bosque de Yotoco. Ciencia abierta: míralo, úsalo y súmate.">
+<meta property="og:image" content="img/flujo_foto_3d.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script src="vendor/model-viewer-umd.min.js"></script>
 <style>
-/* Layout: cabecera con el propósito, ficha con visor 3D a la izquierda y etiqueta de colección a la derecha, flujo de trabajo y método abajo */
+/* Layout: portada con el hongo 3D, por qué digitalizar, paso a paso con fotos, galería filtrable de la salida, ficha CF-001, protocolo y llamado a la ciencia abierta */
 :root{
   --bg:#EEF0EA; --paper:#F9FAF6; --ink:#1E241F; --muted:#5C675D; --line:#CDD4CA;
-  --accent:#9B3B4E; --accent2:#C48A3A; --onaccent:#FFFFFF;
+  --accent:#9B3B4E; --accent2:#B5762A; --moss:#3F5B3A; --onaccent:#FFFFFF; --hero:#1C2620; --onhero:#EEF2EA; --herosoft:#A9B8A6;
   --f-display:"Young Serif", Georgia, "Times New Roman", serif;
   --f-body:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#131714; --paper:#1B211C; --ink:#E5EAE3; --muted:#9CA89D; --line:#2F3A31;
-  --accent:#E08A9C; --accent2:#E3B062; --onaccent:#1B211C; color-scheme:dark}}
+  --accent:#E08A9C; --accent2:#E3B062; --moss:#9CC193; --onaccent:#1B211C; --hero:#0E130F; --onhero:#E5EAE3; --herosoft:#9CA89D; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#131714; --paper:#1B211C; --ink:#E5EAE3; --muted:#9CA89D; --line:#2F3A31;
-  --accent:#E08A9C; --accent2:#E3B062; --onaccent:#1B211C; color-scheme:dark}
+  --accent:#E08A9C; --accent2:#E3B062; --moss:#9CC193; --onaccent:#1B211C; --hero:#0E130F; --onhero:#E5EAE3; --herosoft:#9CA89D; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
-.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1120px;margin:0 auto}
 h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.15;text-wrap:balance}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+h3{font-size:1.2rem}
 p{margin:0}
 em{font-style:italic}
 a{color:var(--accent)}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--paper);border:1px solid var(--line);padding:1px 6px;border-radius:3px}
 .eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-header{display:flex;flex-direction:column;gap:14px;max-width:760px}
-header h1{font-size:clamp(2.2rem,5.5vw,3.6rem)}
-.lede{font-size:1.15rem;color:var(--muted)}
-.stats{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
-.stats b{color:var(--ink);font-weight:500}
-/* ficha */
-.ficha{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0;background:var(--paper);border:1px solid var(--line)}
-.stage{position:relative;min-height:440px;max-width:100%;background:radial-gradient(circle at 50% 42%,var(--paper),var(--bg))}
+section.band{padding-block:72px}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:720px;margin-bottom:32px}
+.sec-head p{color:var(--muted);font-size:1.08rem}
+/* hero */
+.hero{background:var(--hero);color:var(--onhero);padding-block:48px 56px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero .eyebrow{color:var(--herosoft)}
+.hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem)}
+.hero h1 span{color:var(--accent2)}
+.hero .lede{font-size:1.18rem;color:var(--herosoft);max-width:52ch}
+.hero-text{display:flex;flex-direction:column;gap:20px;min-width:0}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 1rem var(--f-body);text-decoration:none;padding:12px 18px;border-radius:4px;border:1px solid transparent}
+.btn.primary{background:var(--accent2);color:#1C2620}
+.btn.ghost{border-color:var(--herosoft);color:var(--onhero)}
+.btn:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+.stats{display:flex;flex-wrap:wrap;gap:12px 32px;padding-top:8px;border-top:1px solid rgba(169,184,166,.3)}
+.stat b{display:block;font-family:var(--f-display);font-weight:400;font-size:2rem;line-height:1;color:var(--onhero)}
+.stat span{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--herosoft)}
+.stage{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:6px;background:radial-gradient(circle at 50% 40%,#2C3A30,#141B16 70%)}
 .stage model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent}
-.hint{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
-.etiqueta{border-left:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.etiqueta .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.hint{position:absolute;left:14px;bottom:12px;font-family:var(--f-mono);font-size:.72rem;color:var(--herosoft)}
+.tag{position:absolute;right:14px;top:12px;font-family:var(--f-mono);font-size:.72rem;color:var(--onhero);background:rgba(0,0,0,.35);padding:4px 10px;border-radius:999px}
+/* por qué */
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.why div{display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--moss);padding-top:14px}
+.why p{color:var(--muted)}
+/* pasos */
+.pasos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 24px;counter-reset:p}
+.pasos li{counter-increment:p;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pasos img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border-radius:4px;border:1px solid var(--line);background:#fff}
+.pasos .n{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.pasos .n::before{content:"Paso " counter(p) " · "}
+.pasos p{color:var(--muted);font-size:.97rem}
+.tools{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:.78rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+/* galería */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+.filters button{font:500 .9rem var(--f-body);background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:6px 12px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--onaccent)}
+.filters button:focus-visible,.gal button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.filters input{font:400 .95rem var(--f-body);padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);min-width:0;flex:1 1 180px;max-width:280px}
+.count{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.gal button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.gal img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border-radius:3px;background:var(--line)}
+.gal span{font-size:.82rem;line-height:1.3}
+.gal small{font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,720px)}
+dialog::backdrop{background:rgba(10,14,11,.85)}
+.lb{background:var(--paper);color:var(--ink);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.lb img{width:100%;max-height:70vh;object-fit:contain;background:#000;display:block}
+.lb .meta{padding:14px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.lb button{font:600 .95rem var(--f-body);background:var(--moss);color:var(--onaccent);border:0;padding:8px 14px;border-radius:4px;cursor:pointer}
+/* ficha */
+.ficha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:0;background:var(--paper);border:1px solid var(--line)}
+.ficha .fotos{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px}
+.ficha .fotos img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#fff;display:block}
+.ficha .fotos img.contain{object-fit:contain}
+.etiqueta{border-left:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.etiqueta .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px}
 .code{font-family:var(--f-mono);font-weight:500;color:var(--accent)}
-.etiqueta h2{font-size:1.7rem}
-dl{margin:0;display:grid;grid-template-columns:1fr;gap:10px}
+dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px}
 dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 dd{margin:0;font-size:.95rem;line-height:1.45}
 .pend{color:var(--muted);font-style:italic}
 .badge{align-self:flex-start;font-family:var(--f-mono);font-size:.72rem;padding:3px 10px;border:1px solid var(--accent2);color:var(--accent2);border-radius:999px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tabs button{font:500 .85rem var(--f-body);background:transparent;color:var(--ink);border:1px solid var(--line);padding:6px 12px;border-radius:3px;cursor:pointer}
-.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--onaccent)}
-.tabs button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
-.fotos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fotos figure{margin:0;display:flex;flex-direction:column;gap:4px}
-.fotos img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--bg)}
-.fotos img.contain{object-fit:contain}
-figcaption{font-size:.82rem;color:var(--muted)}
-/* método */
-section{display:flex;flex-direction:column;gap:16px}
-section > p{max-width:68ch}
-.flujo{overflow-x:auto}
-.flujo img{display:block;width:100%;min-width:640px;max-width:100%;background:#fff}
-ol.pasos{margin:0;padding:0;list-style:none;counter-reset:p;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-ol.pasos li{counter-increment:p;display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--accent);padding-top:12px}
-ol.pasos li::before{content:"Paso " counter(p);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-ol.pasos b{font-weight:600}
-.nota{font-size:.92rem;color:var(--muted);max-width:68ch}
-footer{border-top:1px solid var(--line);padding-top:18px;font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
-@media (max-width:860px){
-  .ficha{grid-template-columns:1fr}
-  .stage{min-height:0;aspect-ratio:1/1}
+/* protocolo */
+.proto{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 40px;counter-reset:q;list-style:none;padding:0;margin:0}
+.proto li{counter-increment:q;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.proto li::before{content:counter(q);font-family:var(--f-mono);font-size:.85rem;width:28px;height:28px;border:1px solid var(--moss);color:var(--moss);border-radius:50%;display:grid;place-items:center}
+/* abierta */
+.open{background:var(--moss);color:var(--onaccent)}
+.open .eyebrow,.open .sec-head p{color:inherit;opacity:.85}
+.open-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.open-grid div{display:flex;flex-direction:column;gap:8px;border-top:1px solid currentColor;padding-top:14px}
+.open a{color:inherit;font-weight:600}
+.open p{opacity:.92}
+footer{padding-block:28px 48px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-direction:column;gap:6px}
+@media (max-width:900px){
+  .hero .wrap,.ficha{grid-template-columns:1fr}
+  .why,.open-grid,.pasos{grid-template-columns:1fr 1fr}
+  .proto{grid-template-columns:1fr}
   .etiqueta{border-left:0;border-top:1px solid var(--line)}
-  ol.pasos{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:560px){
+  .why,.open-grid,.pasos{grid-template-columns:1fr}
+  dl{grid-template-columns:1fr}
+  section.band{padding-block:52px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <span class="eyebrow">Universidad Nacional de Colombia · Sede Palmira · Hongos y Oomicetos</span>
-    <h1>Catálogo fúngico de la Reserva Forestal Bosque de Yotoco</h1>
-    <p class="lede">Registro digital y libre de los hongos de la reserva. Cada hongo tiene su ficha, sus fotos de campo y un modelo 3D que se gira en el navegador.</p>
-    <div class="stats">
-      <span><b>1</b> ficha publicada</span>
-      <span><b>32</b> géneros registrados en la salida</span>
-      <span>Salida de campo: <b>20 oct 2026</b></span>
-    </div>
-  </header>
 
-  <article class="ficha" id="cf-001" aria-label="Ficha CF-001">
-    <div class="stage">
-      <model-viewer id="mv" src="modelos/CF-001_leucoagaricus.glb" camera-controls auto-rotate rotation-per-second="18deg"
-        camera-orbit="20deg 60deg 110%" shadow-intensity="0.7" exposure="1.05" touch-action="pan-y"
-        alt="Modelo 3D de Leucoagaricus, píleo rosado-vinoso con estípite y anillo"></model-viewer>
-      <span class="hint">Arrastra para girar · pellizca para acercar</span>
-    </div>
-    <div class="etiqueta">
-      <div class="head"><span class="eyebrow">Etiqueta</span><span class="code">CF-001</span></div>
-      <h2><em>Leucoagaricus</em> sp.</h2>
-      <span class="badge">Identificación tentativa · pendiente revisión docente</span>
-      <dl id="p-ficha">
-        <div><dt>Taxonomía</dt><dd>Fungi › Basidiomycota › Agaricomycetes › Agaricales › Agaricaceae</dd></div>
-        <div><dt>Píleo</dt><dd>Convexo a aplanado, centro algo deprimido; fibrillas o escamas radiales rosado-vinosas sobre fondo crema, centro violáceo; margen crema.</dd></div>
-        <div><dt>Estípite</dt><dd>Cilíndrico, central, anaranjado a café claro, con anillo membranoso blanco-crema.</dd></div>
-        <div><dt>Sustrato</dt><dd>Hojarasca</dd></div>
-        <div><dt>Localidad</dt><dd>Reserva Forestal Bosque de Yotoco, Yotoco, Valle del Cauca</dd></div>
-        <div><dt>Fecha · colector</dt><dd>20 oct 2026 · Juan David Rojas Villafañe</dd></div>
-        <div><dt>Pendiente</dt><dd class="pend">Escala, GPS, esporada, olor y confirmación de los docentes</dd></div>
-      </dl>
-      <div class="fotos" id="p-fotos">
-        <figure><img src="img/CF-001_campo.jpg" alt="Foto de campo del Leucoagaricus en la hojarasca"><figcaption>Foto de campo (A19)</figcaption></figure>
-        <figure><img class="contain" src="img/CF-001_recorte.webp" alt="Leucoagaricus recortado sin fondo"><figcaption>Recorte sin fondo</figcaption></figure>
+<header class="hero band">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow">Reserva Forestal Bosque de Yotoco · Valle del Cauca</span>
+      <h1>Los hongos del bosque, <span>abiertos para todos</span></h1>
+      <p class="lede">Un catálogo digital y libre de los hongos de Yotoco. Fotos de campo, fichas y modelos 3D que cualquiera puede ver, usar y ampliar. Empezó en una salida de clase y está hecho para crecer con cada visita.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#galeria">Ver las 70 fotos</a>
+        <a class="btn ghost" href="#paso-a-paso">Cómo se hace un hongo 3D</a>
+        <a class="btn ghost" href="#sumate">Súmate</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>70</b><span>fotos de campo</span></div>
+        <div class="stat"><b>32</b><span>géneros de hongos</span></div>
+        <div class="stat"><b>1</b><span>modelo 3D</span></div>
       </div>
     </div>
-  </article>
+    <div class="stage">
+      <model-viewer id="mv" src="modelos/CF-001_leucoagaricus.glb" camera-controls auto-rotate rotation-per-second="18deg"
+        camera-orbit="20deg 62deg 110%" shadow-intensity="0.8" exposure="1.1" touch-action="pan-y"
+        alt="Modelo 3D de Leucoagaricus, píleo rosado-vinoso con estípite y anillo"></model-viewer>
+      <span class="tag">CF-001 · <em>Leucoagaricus</em></span>
+      <span class="hint">Arrastra para girar · pellizca para acercar</span>
+    </div>
+  </div>
+</header>
 
-  <section>
-    <span class="eyebrow">Método</span>
-    <h2>De una foto de campo a un modelo 3D</h2>
-    <p>El modelo se obtiene de una sola fotografía con herramientas libres en Python. El programa está en la carpeta <code>pipeline/</code> del repositorio para repetir el proceso con cada hongo.</p>
-    <div class="flujo"><img src="img/flujo_foto_3d.jpg" alt="Foto de campo, recorte automático y dos vistas del modelo 3D"></div>
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Por qué digitalizar</span>
+      <h2>Un hongo dura días. Su registro puede durar siempre.</h2>
+      <p>La mayoría de los basidiomas se pudren en horas o días. Fotografiarlos bien y guardarlos en abierto convierte una salida de campo en un archivo que sirve a otros.</p>
+    </div>
+    <div class="why">
+      <div><h3>Conservación</h3><p>Documentar qué hongos hay, dónde y cuándo es la base para cuidar la diversidad fúngica de la reserva, que está poco estudiada.</p></div>
+      <div><h3>Docencia</h3><p>Un estudiante puede girar el hongo y ver píleo, láminas, anillo y estípite sin tener el espécimen en la mano.</p></div>
+      <div><h3>Ciencia abierta</h3><p>Fotos, datos y código quedan libres: cualquiera puede revisar las identificaciones, repetir el método o sumar registros.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="paso-a-paso" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Paso a paso</span>
+      <h2>De una foto de campo a un hongo en 3D</h2>
+      <p>Así se hizo el registro CF-001, con una sola foto y herramientas gratuitas. El programa está en este repositorio para repetirlo con cualquier hongo que tenga píleo y estípite.</p>
+    </div>
     <ol class="pasos">
-      <li><b>Recorte</b><span>El hongo se separa del fondo con SAM (<em>Segment Anything</em>), marcando puntos sobre el píleo y el estípite.</span></li>
-      <li><b>Píleo</b><span>La cara superior, vista como elipse por la perspectiva, se endereza a un disco y se usa como textura.</span></li>
-      <li><b>Estípite y láminas</b><span>El ancho del pie se mide fila por fila y se gira sobre su eje; las láminas se modelan con el color de su borde visible.</span></li>
+      <li><img src="img/pasos/1_foto.jpg" alt="Foto de campo del Leucoagaricus en la hojarasca" loading="lazy"><span class="n">Fotografiar</span><h3>La foto de campo</h3><p>Se toma de perfil, para que se vean el sombrero, el pie y el anillo. Es la foto A19 de la salida del 20 de octubre.</p></li>
+      <li><img src="img/pasos/2_puntos.jpg" alt="Foto con puntos verdes sobre el hongo y rojos sobre el fondo" loading="lazy"><span class="n">Marcar</span><h3>Decirle a la IA qué es hongo</h3><p>Se marcan puntos verdes sobre el hongo y rojos sobre el fondo. Con eso, SAM (<em>Segment Anything</em>) sabe qué recortar.</p></li>
+      <li><img src="img/pasos/3_mascara.jpg" alt="Máscara en blanco y negro del hongo" loading="lazy"><span class="n">Segmentar</span><h3>La máscara</h3><p>SAM devuelve una máscara: blanco es hongo, negro es fondo. Aquí una rama cortaba el pie y se unieron los dos tramos.</p></li>
+      <li><img src="img/pasos/4_recorte.jpg" alt="Hongo recortado sobre fondo blanco" loading="lazy"><span class="n">Recortar</span><h3>El hongo sin fondo</h3><p>Se aplica la máscara a la foto y queda el hongo solo, en PNG transparente. Este recorte ya sirve para fichas y guías.</p></li>
+      <li><img src="img/pasos/5_modelo_lateral.jpg" alt="Modelo 3D en vista lateral" loading="lazy"><span class="n">Reconstruir</span><h3>El modelo 3D</h3><p>El programa <code>hongo3d.py</code> endereza la cara del sombrero a un disco y gira el ancho del pie sobre su eje. Sale un archivo <code>.glb</code>.</p></li>
+      <li><img src="img/pasos/6_modelo_inferior.jpg" alt="Modelo 3D visto desde abajo" loading="lazy"><span class="n">Publicar</span><h3>Al catálogo</h3><p>El <code>.glb</code> se abre en el navegador con <em>model-viewer</em>. Las láminas, que no se ven en la foto, se completan con su color; por eso sirve para ver, no para medir.</p></li>
     </ol>
-    <p class="nota">El modelo supone simetría radial y completa las partes que no se ven en la foto. Sirve para ver la forma y los caracteres, no para medir. Para modelos fieles se usará fotogrametría (40 a 80 fotos alrededor de cada hongo).</p>
-  </section>
+    <div class="tools">
+      <span class="chip">Python</span><span class="chip">SAM · Segment Anything</span><span class="chip">rembg</span><span class="chip">trimesh</span><span class="chip">model-viewer</span><span class="chip">GitHub Pages</span>
+    </div>
+  </div>
+</section>
 
-  <footer>
+<section class="band" id="galeria">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Registro fotográfico · 20 de octubre de 2026</span>
+      <h2>Lo que encontramos en el sendero</h2>
+      <p>Las 70 fotos de la salida, con su género tentativo. Toca una para verla grande. Las identificaciones se hicieron solo con fotografía y esperan revisión de los docentes.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar por grupo">
+      <button type="button" data-g="" aria-pressed="true">Todas</button>
+      <button type="button" data-g="Basidiomycota" aria-pressed="false">Basidiomicetos</button>
+      <button type="button" data-g="Ascomycota" aria-pressed="false">Ascomicetos</button>
+      <button type="button" data-g="Mixomiceto" aria-pressed="false">Mixomicetos</button>
+      <input type="search" id="q" placeholder="Buscar género o familia" aria-label="Buscar género o familia">
+    </div>
+    <p class="count" id="count"></p>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<dialog id="lb"><div class="lb"><img id="lbimg" alt=""><div class="meta"><div><b id="lbt"></b><br><small id="lbs" class="eyebrow"></small></div><button type="button" id="lbc">Cerrar</button></div></div></dialog>
+
+<section class="band" id="cf-001" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Ficha de registro</span>
+      <h2>CF-001 · <em>Leucoagaricus</em> (prob.)</h2>
+    </div>
+    <article class="ficha">
+      <div class="fotos">
+        <img src="img/CF-001_campo.jpg" alt="Foto de campo del Leucoagaricus">
+        <img class="contain" src="img/CF-001_recorte.webp" alt="Leucoagaricus recortado">
+      </div>
+      <div class="etiqueta">
+        <div class="head"><span class="eyebrow">Etiqueta</span><span class="code">CF-001</span></div>
+        <span class="badge">Identificación tentativa · pendiente revisión docente</span>
+        <dl>
+          <div><dt>Taxonomía</dt><dd>Basidiomycota › Agaricales › Agaricaceae</dd></div>
+          <div><dt>Sustrato</dt><dd>Hojarasca</dd></div>
+          <div><dt>Píleo</dt><dd>Fibrillas radiales rosado-vinosas sobre fondo crema, centro violáceo</dd></div>
+          <div><dt>Estípite</dt><dd>Central, anaranjado a café claro, con anillo membranoso blanco-crema</dd></div>
+          <div><dt>Localidad</dt><dd>Reserva Forestal Bosque de Yotoco, Yotoco, Valle del Cauca</dd></div>
+          <div><dt>Fecha · colector</dt><dd>20 oct 2026 · Juan David Rojas Villafañe</dd></div>
+          <div><dt>Pendiente</dt><dd class="pend">Escala, GPS, esporada, olor</dd></div>
+          <div><dt>Archivos</dt><dd><a href="modelos/CF-001_leucoagaricus.glb">Modelo .glb</a> · <a href="datos/fichas.json">Ficha .json</a></dd></div>
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="band" id="protocolo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Protocolo de campo</span>
+      <h2>Cómo fotografiar un hongo para el catálogo</h2>
+      <p>Con un celular basta. Seguir siempre los mismos pasos hace que los registros sean comparables y que se puedan pasar a 3D.</p>
+    </div>
+    <ol class="proto">
+      <li><span><b>Sin tocarlo primero.</b> Una foto del hongo tal como está, con su entorno.</span></li>
+      <li><span><b>Tres vistas.</b> Arriba (píleo), abajo (láminas o poros) y de perfil (pie, anillo, volva).</span></li>
+      <li><span><b>Escala.</b> Una regla o una tarjeta de color junto al hongo en al menos una foto.</span></li>
+      <li><span><b>Sustrato.</b> Una foto de dónde crece: suelo, madera, hojarasca u otro hongo.</span></li>
+      <li><span><b>Datos.</b> Coordenadas GPS, fecha, altitud, olor, textura y color del látex si hay.</span></li>
+      <li><span><b>Para 3D fiel.</b> 40 a 80 fotos dando la vuelta completa al hongo, a dos alturas, con luz pareja (fotogrametría).</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band open" id="sumate">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Ciencia abierta</span>
+      <h2>Este catálogo es de todos. Súmate.</h2>
+      <p>La ciencia avanza más rápido cuando se comparte. Todo lo que hay aquí se puede ver, descargar, corregir y reutilizar, citando la fuente.</p>
+    </div>
+    <div class="open-grid">
+      <div><h3>Corrige</h3><p>¿Ves una identificación equivocada? Abre un <a href="https://github.com/jrojasvi-oss/catalogo-fungico-yotoco/issues">comentario (issue) en GitHub</a> con el número de la foto.</p></div>
+      <div><h3>Aporta</h3><p>Si visitas Yotoco, toma fotos con el protocolo y compártelas. Cada hongo nuevo es una ficha más.</p></div>
+      <div><h3>Reutiliza</h3><p>Fotos y fichas con licencia CC BY 4.0; código con licencia MIT. Úsalo en clases, guías o en tu propia reserva.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="wrap">
     <span>Juan David Rojas Villafañe · Ingeniería Agronómica · Universidad Nacional de Colombia, Sede Palmira</span>
-    <span>Docentes de la asignatura: Carlos Alberto Huertas Davey y Eyder Daniel Gómez López</span>
-    <span>Fotos y modelos: CC BY 4.0 · Código: MIT · <a href="https://github.com/jrojasvi-oss/catalogo-fungico-yotoco">Repositorio en GitHub</a> · <a href="informes/Informe_Salida_Yotoco_Hongos_Rojas.pdf">Informe de la salida (PDF)</a> · <a href="informes/Propuesta_Catalogo3D_Yotoco_Rojas.pdf">Propuesta del catálogo 3D (PDF)</a></span>
-  </footer>
-</div>
+    <span>Asignatura Hongos y Oomicetos (2026-2S) · Docentes: Carlos Alberto Huertas Davey y Eyder Daniel Gómez López</span>
+    <span><a href="https://github.com/jrojasvi-oss/catalogo-fungico-yotoco">Repositorio en GitHub</a> · <a href="informes/Informe_Salida_Yotoco_Hongos_Rojas.pdf">Informe de la salida (PDF)</a> · <a href="informes/Propuesta_Catalogo3D_Yotoco_Rojas.pdf">Propuesta del catálogo 3D (PDF)</a> · <a href="PROTOCOLO.md">Protocolo completo</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var DATA=[{"foto":"A1","img":"img/galeria/A01.jpg","genero":"Pleurotus","familia":"Pleurotaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A2","img":"img/galeria/A02.jpg","genero":"Pleurotus","familia":"Pleurotaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A3","img":"img/galeria/A03.jpg","genero":"Polyporus s.l.","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A4","img":"img/galeria/A04.jpg","genero":"Polyporus s.l.","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A5","img":"img/galeria/A05.jpg","genero":"Macrolepiota","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A6","img":"img/galeria/A06.jpg","genero":"Macrolepiota","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A7","img":"img/galeria/A07.jpg","genero":"Macrolepiota","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A8","img":"img/galeria/A08.jpg","genero":"Apioperdon","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A9","img":"img/galeria/A09.jpg","genero":"Lycoperdon","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A10","img":"img/galeria/A10.jpg","genero":"Lycoperdon","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A11","img":"img/galeria/A11.jpg","genero":"Xylaria","familia":"Xylariaceae","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A12","img":"img/galeria/A12.jpg","genero":"Xylaria","familia":"Xylariaceae","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A13","img":"img/galeria/A13.jpg","genero":"Xylaria","familia":"Xylariaceae","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A14","img":"img/galeria/A14.jpg","genero":"Xylaria","familia":"Xylariaceae","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A15","img":"img/galeria/A15.jpg","genero":"Xylaria","familia":"Xylariaceae","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A16","img":"img/galeria/A16.jpg","genero":"Xylaria","familia":"Xylariaceae","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A17","img":"img/galeria/A17.jpg","genero":"Indeterminado","familia":"—","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A18","img":"img/galeria/A18.jpg","genero":"Indeterminado","familia":"—","orden":"Xylariales","grupo":"Ascomycota"},{"foto":"A19","img":"img/galeria/A19.jpg","genero":"Leucoagaricus (prob.)","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A20","img":"img/galeria/A20.jpg","genero":"Leucoagaricus (prob.)","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A21","img":"img/galeria/A21.jpg","genero":"Indeterminado","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A22","img":"img/galeria/A22.jpg","genero":"Cystolepiota (prob.)","familia":"Agaricaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A23","img":"img/galeria/A23.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A24","img":"img/galeria/A24.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A25","img":"img/galeria/A25.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A26","img":"img/galeria/A26.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A27","img":"img/galeria/A27.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A28","img":"img/galeria/A28.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A29","img":"img/galeria/A29.jpg","genero":"Marasmius","familia":"Marasmiaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A30","img":"img/galeria/A30.jpg","genero":"Gymnopus (prob.)","familia":"Omphalotaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A31","img":"img/galeria/A31.jpg","genero":"Gymnopus (prob.)","familia":"Omphalotaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A32","img":"img/galeria/A32.jpg","genero":"Mycena","familia":"Mycenaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A33","img":"img/galeria/A33.jpg","genero":"Mycena","familia":"Mycenaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A34","img":"img/galeria/A34.jpg","genero":"Favolaschia","familia":"Mycenaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A35","img":"img/galeria/A35.jpg","genero":"Cyptotrama","familia":"Physalacriaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A36","img":"img/galeria/A36.jpg","genero":"Cyptotrama","familia":"Physalacriaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A37","img":"img/galeria/A37.jpg","genero":"Armillaria (prob.)","familia":"Physalacriaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A38","img":"img/galeria/A38.jpg","genero":"Armillaria (prob.)","familia":"Physalacriaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A39","img":"img/galeria/A39.jpg","genero":"Armillaria (prob.)","familia":"Physalacriaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A40","img":"img/galeria/A40.jpg","genero":"Gymnopilus (prob.)","familia":"Hymenogastraceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A41","img":"img/galeria/A41.jpg","genero":"Pluteus (prob.)","familia":"Pluteaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A42","img":"img/galeria/A42.jpg","genero":"Gerronema (prob.)","familia":"Porotheleaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A43","img":"img/galeria/A43.jpg","genero":"Schizophyllum (prob.)","familia":"Schizophyllaceae","orden":"Agaricales","grupo":"Basidiomycota"},{"foto":"A44","img":"img/galeria/A44.jpg","genero":"Lentinus (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A45","img":"img/galeria/A45.jpg","genero":"Lentinus (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A46","img":"img/galeria/A46.jpg","genero":"Lentinus (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A47","img":"img/galeria/A47.jpg","genero":"Panus (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A48","img":"img/galeria/A48.jpg","genero":"Panus (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A49","img":"img/galeria/A49.jpg","genero":"Trametes","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A50","img":"img/galeria/A50.jpg","genero":"Trametes","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A51","img":"img/galeria/A51.jpg","genero":"Trametes","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A52","img":"img/galeria/A52.jpg","genero":"Trametes","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A53","img":"img/galeria/A53.jpg","genero":"Indeterminado","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A54","img":"img/galeria/A54.jpg","genero":"Ganoderma (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A55","img":"img/galeria/A55.jpg","genero":"Ganoderma (prob.)","familia":"Polyporaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A56","img":"img/galeria/A56.jpg","genero":"Rigidoporus (prob.)","familia":"Meripilaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A57","img":"img/galeria/A57.jpg","genero":"Cymatoderma (prob.)","familia":"Meruliaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A58","img":"img/galeria/A58.jpg","genero":"Cymatoderma (prob.)","familia":"Meruliaceae","orden":"Polyporales","grupo":"Basidiomycota"},{"foto":"A59","img":"img/galeria/A59.jpg","genero":"Artomyces","familia":"Auriscalpiaceae","orden":"Russulales","grupo":"Basidiomycota"},{"foto":"A60","img":"img/galeria/A60.jpg","genero":"Auricularia","familia":"Auriculariaceae","orden":"Auriculariales","grupo":"Basidiomycota"},{"foto":"A61","img":"img/galeria/A61.jpg","genero":"Auricularia","familia":"Auriculariaceae","orden":"Auriculariales","grupo":"Basidiomycota"},{"foto":"A62","img":"img/galeria/A62.jpg","genero":"Exidia (prob.)","familia":"Auriculariaceae","orden":"Auriculariales","grupo":"Basidiomycota"},{"foto":"A63","img":"img/galeria/A63.jpg","genero":"Dacryopinax (prob.)","familia":"Dacrymycetaceae","orden":"Dacrymycetales","grupo":"Basidiomycota"},{"foto":"A64","img":"img/galeria/A64.jpg","genero":"Indeterminado","familia":"—","orden":"—","grupo":"Otro"},{"foto":"A65","img":"img/galeria/A65.jpg","genero":"Indeterminado","familia":"—","orden":"—","grupo":"Otro"},{"foto":"A66","img":"img/galeria/A66.jpg","genero":"Indeterminado","familia":"—","orden":"—","grupo":"Mixomiceto"},{"foto":"A67","img":"img/galeria/A67.jpg","genero":"Arcyria","familia":"Trichiaceae","orden":"Trichiales","grupo":"Mixomiceto"},{"foto":"A68","img":"img/galeria/A68.jpg","genero":"Trichia","familia":"Trichiaceae","orden":"Trichiales","grupo":"Mixomiceto"},{"foto":"A69","img":"img/galeria/A69.jpg","genero":"Indeterminado","familia":"—","orden":"—","grupo":"Mixomiceto"},{"foto":"A70","img":"img/galeria/A70.jpg","genero":"Madera en descomposición","familia":"—","orden":"—","grupo":"Otro"}];
+  var gal=document.getElementById('gal'),count=document.getElementById('count'),q=document.getElementById('q');
+  var group='',btns=document.querySelectorAll('.filters button');
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbt=document.getElementById('lbt'),lbs=document.getElementById('lbs');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function name(d){var g=d.genero;var it=/^[A-Z][a-z]+/.test(g)&&g.indexOf('Indeterminado')<0&&g.indexOf('Madera')<0;
+    if(!it)return esc(g);var m=g.match(/^(\S+)(.*)$/);return '<em>'+esc(m[1])+'</em>'+esc(m[2])}
+  function render(){
+    var t=(q.value||'').toLowerCase().trim();
+    var rows=DATA.filter(function(d){return(!group||d.grupo===group)&&(!t||(d.genero+' '+d.familia+' '+d.orden).toLowerCase().indexOf(t)>=0)});
+    count.textContent=rows.length+' de '+DATA.length+' fotos';
+    gal.innerHTML=rows.map(function(d,i){return '<button type="button" data-i="'+DATA.indexOf(d)+'"><img src="'+d.img+'" alt="'+esc(d.genero)+', foto '+d.foto+'" loading="lazy"><span>'+name(d)+'</span><small>'+d.foto+' · '+esc(d.familia)+'</small></button>'}).join('');
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){group=b.dataset.g;btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});render()})});
+  q.addEventListener('input',render);
+  gal.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var d=DATA[+b.dataset.i];
+    lbimg.src=d.img;lbimg.alt=d.genero;lbt.innerHTML=name(d);lbs.textContent=d.foto+' · '+d.familia+' · '+d.orden+' · '+d.grupo;
+    if(lb.showModal)lb.showModal();});
+  document.getElementById('lbc').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+  render();
+})();
+</script>
 </body>
 </html>
